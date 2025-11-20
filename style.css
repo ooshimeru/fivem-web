@@ -1,0 +1,104 @@
+/* style.css */
+
+/* Scrollbar personnalisée pour Webkit */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #0f0f13;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #a855f7; /* Couleur Brand 500 */
+}
+
+/* Suppression du highlight bleu sur mobile */
+* {
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Effet de glassmorphism subtil */
+.glass {
+    background: rgba(17, 24, 39, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+/* --- ANIMATIONS AU SCROLL (REVEAL) --- */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px); /* Descend l'élément de 30px */
+    transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0); /* Remonte à sa place */
+}
+
+/* Délai pour les éléments en cascade (ex: les 3 cartes features) */
+.delay-100 {
+    transition-delay: 0.1s;
+}
+.delay-200 {
+    transition-delay: 0.2s;
+}
+.delay-300 {
+    transition-delay: 0.3s;
+}
+
+/* --- ANIMATION FLOTTANTE (FLOATING) --- */
+/* Idéal pour les images ou logos */
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-15px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+.animate-float {
+    animation: float 6s ease-in-out infinite;
+}
+
+/* --- FOND VIVANT (BLOB) --- */
+/* Un halo violet qui bouge doucement derrière */
+@keyframes blob {
+    0% {
+        transform: translate(0px, 0px) scale(1);
+    }
+    33% {
+        transform: translate(30px, -50px) scale(1.1);
+    }
+    66% {
+        transform: translate(-20px, 20px) scale(0.9);
+    }
+    100% {
+        transform: translate(0px, 0px) scale(1);
+    }
+}
+
+.blob-bg {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(
+        circle,
+        rgba(168, 85, 247, 0.15) 0%,
+        rgba(0, 0, 0, 0) 70%
+    );
+    border-radius: 50%;
+    animation: blob 10s infinite alternate;
+    pointer-events: none; /* Click à travers */
+    z-index: 0;
+}

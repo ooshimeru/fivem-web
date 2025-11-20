@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="fr" class="scroll-smooth">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Concessionnaire | Aurora RP</title>
+
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Oswald:wght@500;700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="style.css" />
+
+        <!-- Même configuration de couleurs que l'accueil -->
+        <script>
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        colors: {
+                            brand: {
+                                400: "#c084fc",
+                                500: "#a855f7",
+                                600: "#9333ea",
+                                900: "#180828",
+                            },
+                        },
+                        fontFamily: {
+                            sans: ["Inter", "sans-serif"],
+                            display: ["Oswald", "sans-serif"],
+                        },
+                    },
+                },
+            };
+        </script>
+    </head>
+    <body
+        class="bg-gray-950 text-gray-100 font-sans selection:bg-brand-500 selection:text-white"
+    >
+        <!-- Navigation Simplifiée -->
+        <nav
+            class="fixed w-full z-50 top-0 bg-gray-950/80 backdrop-blur-md border-b border-white/5"
+        >
+            <div
+                class="container mx-auto px-6 py-4 flex justify-between items-center"
+            >
+                <a
+                    href="index.html"
+                    class="text-2xl font-display font-bold tracking-wider text-white flex items-center gap-2"
+                >
+                    <i class="fas fa-cube text-brand-500"></i> AURORA<span
+                        class="text-brand-400"
+                        >RP</span
+                    >
+                </a>
+                <a
+                    href="index.html"
+                    class="text-sm font-medium text-gray-400 hover:text-white transition flex items-center gap-2"
+                >
+                    <i class="fas fa-arrow-left"></i> Retour à l'accueil
+                </a>
+            </div>
+        </nav>
+
+        <!-- Header Concessionnaire -->
+        <header
+            class="pt-32 pb-12 px-6 text-center bg-gradient-to-b from-gray-900 via-gray-950 to-gray-950"
+        >
+            <h1 class="text-4xl md:text-6xl font-display font-bold mb-4">
+                NOS
+                <span
+                    class="text-transparent bg-clip-text bg-gradient-to-r from-brand-400 to-purple-600"
+                    >VÉHICULES</span
+                >
+            </h1>
+            <p class="text-gray-400 max-w-2xl mx-auto text-lg">
+                Parcourez notre catalogue exclusif d'imports et de véhicules
+                concession.
+                <span class="text-brand-400"
+                    >Passez la souris sur un véhicule</span
+                >
+                pour voir ses performances techniques.
+            </p>
+
+            <!-- Filtres -->
+            <div class="mt-10 flex flex-wrap justify-center gap-4">
+                <button
+                    onclick="filterVehicles('all')"
+                    class="filter-btn active px-6 py-2 rounded-full border border-brand-500 bg-brand-600 text-white font-bold transition shadow-[0_0_15px_rgba(168,85,247,0.4)]"
+                >
+                    TOUT
+                </button>
+                <button
+                    onclick="filterVehicles('sport')"
+                    class="filter-btn px-6 py-2 rounded-full border border-gray-800 bg-gray-900 text-gray-400 hover:border-brand-500 hover:text-white transition"
+                >
+                    SPORTIVES
+                </button>
+                <button
+                    onclick="filterVehicles('suv')"
+                    class="filter-btn px-6 py-2 rounded-full border border-gray-800 bg-gray-900 text-gray-400 hover:border-brand-500 hover:text-white transition"
+                >
+                    SUV
+                </button>
+                <button
+                    onclick="filterVehicles('moto')"
+                    class="filter-btn px-6 py-2 rounded-full border border-gray-800 bg-gray-900 text-gray-400 hover:border-brand-500 hover:text-white transition"
+                >
+                    MOTOS
+                </button>
+                <button
+                    onclick="filterVehicles('luxe')"
+                    class="filter-btn px-6 py-2 rounded-full border border-gray-800 bg-gray-900 text-gray-400 hover:border-brand-500 hover:text-white transition"
+                >
+                    LUXE
+                </button>
+            </div>
+        </header>
+
+        <!-- Grille des Véhicules -->
+        <section class="container mx-auto px-6 pb-24">
+            <div
+                id="vehicle-grid"
+                class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"
+            >
+                <!-- Les cartes seront injectées ici par le JS -->
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer
+            class="bg-gray-950 border-t border-gray-900 py-8 text-center text-gray-600 text-sm"
+        >
+            <p>
+                © 2023 Aurora RP. Les marques et modèles sont la propriété de
+                leurs créateurs respectifs.
+            </p>
+        </footer>
+
+        <script src="dealership.js"></script>
+    </body>
+</html>
