@@ -163,6 +163,12 @@
                         class="hover:text-white transition-colors"
                         >WHITELIST</a
                     >
+                    <a
+                        href="#"
+                        onclick="toggleRules(); return false;"
+                        class="hover:text-white transition-colors"
+                        >RÈGLEMENT</a
+                    >
                 </div>
 
                 <!-- Bouton CTA -->
@@ -199,6 +205,7 @@
                 <a href="#accueil" onclick="toggleMenu()">Accueil</a>
                 <a href="#features" onclick="toggleMenu()">Exclusivités</a>
                 <a href="#whitelist" onclick="toggleMenu()">Whitelist</a>
+                <a href="#" onclick="toggleRules(); toggleMenu()">Règlement</a>
                 <a href="#" class="text-brand-400">Discord</a>
             </div>
         </nav>
@@ -563,6 +570,89 @@
                                 pour des procès immersifs au tribunal.
                             </p>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ROADMAP / DÉVELOPPEMENT -->
+        <section class="py-20 bg-gray-950 relative overflow-hidden">
+            <div class="container mx-auto px-6 relative z-10">
+                <h2
+                    class="text-3xl font-display font-bold mb-12 text-center reveal"
+                >
+                    NOTRE <span class="text-brand-500">FUTUR</span>
+                </h2>
+
+                <!-- Ligne verticale centrale -->
+                <div class="relative max-w-4xl mx-auto">
+                    <div
+                        class="absolute left-8 md:left-1/2 top-0 h-full w-0.5 bg-gradient-to-b from-brand-500 to-transparent md:-translate-x-1/2"
+                    ></div>
+
+                    <!-- Étape 1 : Passé (Terminé) -->
+                    <div
+                        class="relative flex flex-col md:flex-row items-center mb-12 reveal delay-100"
+                    >
+                        <div
+                            class="md:w-1/2 md:pr-12 md:text-right pl-20 md:pl-0"
+                        >
+                            <h3 class="text-xl font-bold text-white">
+                                Ouverture Alpha
+                            </h3>
+                            <p class="text-gray-400 text-sm mt-2">
+                                Mise en place de l'infrastructure, base illégale
+                                et économie v1.
+                            </p>
+                        </div>
+                        <div
+                            class="absolute left-8 md:left-1/2 w-4 h-4 bg-green-500 rounded-full md:-translate-x-1/2 border-4 border-gray-900 shadow-[0_0_10px_#22c55e]"
+                        ></div>
+                        <div class="hidden md:block md:w-1/2"></div>
+                    </div>
+
+                    <!-- Étape 2 : Présent (En cours) -->
+                    <div
+                        class="relative flex flex-col md:flex-row items-center mb-12 reveal delay-200"
+                    >
+                        <div class="hidden md:block md:w-1/2"></div>
+                        <div
+                            class="absolute left-8 md:left-1/2 w-6 h-6 bg-brand-500 rounded-full md:-translate-x-1/2 border-4 border-gray-900 animate-pulse"
+                        ></div>
+                        <div class="md:w-1/2 md:pl-12 pl-20 md:text-left">
+                            <span
+                                class="text-brand-400 text-xs font-bold uppercase tracking-widest mb-1 block"
+                                >ACTUELLEMENT</span
+                            >
+                            <h3 class="text-xl font-bold text-white">
+                                Mise à jour "Cartel"
+                            </h3>
+                            <p class="text-gray-400 text-sm mt-2">
+                                Nouveau système de drogues, territoires
+                                dynamiques et rework LSPD.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Étape 3 : Futur -->
+                    <div
+                        class="relative flex flex-col md:flex-row items-center reveal delay-300"
+                    >
+                        <div
+                            class="md:w-1/2 md:pr-12 md:text-right pl-20 md:pl-0 opacity-50"
+                        >
+                            <h3 class="text-xl font-bold text-white">
+                                Expansion Nord
+                            </h3>
+                            <p class="text-gray-400 text-sm mt-2">
+                                Développement de Paleto Bay, nouveaux circuits
+                                illégaux et DLC Casino.
+                            </p>
+                        </div>
+                        <div
+                            class="absolute left-8 md:left-1/2 w-4 h-4 bg-gray-700 rounded-full md:-translate-x-1/2 border-4 border-gray-900"
+                        ></div>
+                        <div class="hidden md:block md:w-1/2"></div>
                     </div>
                 </div>
             </div>
@@ -1063,9 +1153,26 @@
                     >
                         AURORA<span class="text-brand-500">RP</span>
                     </h5>
-                    <p class="text-gray-600 text-sm">
-                        © 2023 Serveur FiveM. Tous droits réservés.
-                    </p>
+                    <div
+                        class="text-gray-600 text-xs mt-2 flex flex-col md:flex-row gap-4 items-center md:items-start"
+                    >
+                        <p>© 2024 Aurora RP. Non affilié à Rockstar Games.</p>
+                        <div class="flex gap-4">
+                            <a href="#" class="hover:text-brand-400 transition"
+                                >Mentions Légales</a
+                            >
+                            <span class="hidden md:inline">•</span>
+                            <a href="#" class="hover:text-brand-400 transition"
+                                >CGV / CGU</a
+                            >
+                            <span class="hidden md:inline">•</span>
+                            <a
+                                href="mailto:contact@aurorarp.fr"
+                                class="hover:text-brand-400 transition"
+                                >Nous contacter</a
+                            >
+                        </div>
+                    </div>
                 </div>
 
                 <div class="flex gap-6">
@@ -1087,6 +1194,98 @@
                 </div>
             </div>
         </footer>
+        <!-- MODAL RÈGLEMENT -->
+        <div id="rules-modal" class="fixed inset-0 z-[100] hidden">
+            <!-- Fond sombre flouté -->
+            <div
+                class="absolute inset-0 bg-black/80 backdrop-blur-sm"
+                onclick="toggleRules()"
+            ></div>
+
+            <!-- Contenu -->
+            <div
+                class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-2xl bg-gray-900 border border-brand-500 rounded-2xl shadow-[0_0_50px_rgba(168,85,247,0.3)] flex flex-col max-h-[80vh]"
+            >
+                <!-- Header -->
+                <div
+                    class="p-6 border-b border-gray-800 flex justify-between items-center"
+                >
+                    <h3 class="text-2xl font-display font-bold text-white">
+                        RÈGLEMENT <span class="text-brand-500">GÉNÉRAL</span>
+                    </h3>
+                    <button
+                        onclick="toggleRules()"
+                        class="text-gray-400 hover:text-white transition"
+                    >
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                </div>
+
+                <!-- Texte Scrollable -->
+                <div
+                    class="p-6 overflow-y-auto text-gray-300 text-sm leading-relaxed space-y-4 pr-2"
+                >
+                    <div>
+                        <h4 class="text-brand-400 font-bold mb-1">
+                            1. LE FAIRPLAY AVANT TOUT
+                        </h4>
+                        <p>
+                            Le WinRP est interdit. Vous devez accepter la
+                            défaite (LoseRP). La priorité est la qualité de la
+                            scène, pas la victoire.
+                        </p>
+                    </div>
+                    <div>
+                        <h4 class="text-brand-400 font-bold mb-1">
+                            2. LE POWERGAMING (PG)
+                        </h4>
+                        <p>
+                            Il est interdit de réaliser des actions
+                            irréalisables IRL (ex: sauter en voiture d'une
+                            montagne et repartir).
+                        </p>
+                    </div>
+                    <div>
+                        <h4 class="text-brand-400 font-bold mb-1">
+                            3. LE METAGAMING (Méta)
+                        </h4>
+                        <p>
+                            Il est strictement interdit d'utiliser des
+                            informations obtenues hors jeu (Discord, Stream)
+                            pour votre personnage.
+                        </p>
+                    </div>
+                    <div>
+                        <h4 class="text-brand-400 font-bold mb-1">
+                            4. MORT RP & WIPE
+                        </h4>
+                        <p>
+                            La mort RP est définitive et validée par le staff.
+                            Un Wipe peut être prononcé en cas d'incohérence
+                            grave.
+                        </p>
+                    </div>
+                    <div
+                        class="p-4 bg-brand-900/30 border border-brand-500/30 rounded text-center mt-4"
+                    >
+                        <p class="text-brand-200 italic">
+                            "En rejoignant Aurora RP, j'accepte ces règles."
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Footer -->
+                <div class="p-6 border-t border-gray-800 text-center">
+                    <button
+                        onclick="toggleRules()"
+                        class="px-8 py-2 bg-brand-600 hover:bg-brand-500 text-white font-bold rounded transition"
+                    >
+                        J'AI COMPRIS
+                    </button>
+                </div>
+            </div>
+        </div>
+
         <div
             id="cursor"
             class="hidden md:block fixed w-6 h-6 border-2 border-brand-500 rounded-full pointer-events-none z-[9999] transition-transform duration-75 -translate-x-1/2 -translate-y-1/2 mix-blend-difference"
@@ -1098,5 +1297,35 @@
         <!-- Vanilla Tilt JS (Pour l'effet 3D) -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
         <script src="script.js"></script>
+
+        <!-- WIDGET DISCORD FLOTTANT -->
+        <a
+            href="https://discord.com"
+            target="_blank"
+            class="fixed bottom-6 right-6 z-50 group"
+        >
+            <!-- Bulle de texte -->
+            <div
+                class="absolute right-full mr-4 top-1/2 -translate-y-1/2 bg-white text-gray-900 px-4 py-2 rounded-lg font-bold text-sm opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap shadow-lg pointer-events-none"
+            >
+                Rejoins-nous !
+                <!-- Petite flèche CSS -->
+                <div
+                    class="absolute top-1/2 -right-1 -translate-y-1/2 w-2 h-2 bg-white transform rotate-45"
+                ></div>
+            </div>
+
+            <!-- Le Bouton -->
+            <div
+                class="w-16 h-16 bg-[#5865F2] rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(88,101,242,0.5)] hover:scale-110 hover:rotate-12 transition-all duration-300 animate-bounce-slow"
+            >
+                <i class="fab fa-discord text-3xl text-white"></i>
+            </div>
+
+            <!-- Onde d'animation -->
+            <div
+                class="absolute inset-0 rounded-full border-2 border-[#5865F2] animate-ping opacity-20 pointer-events-none"
+            ></div>
+        </a>
     </body>
 </html>

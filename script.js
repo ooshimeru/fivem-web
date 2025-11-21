@@ -160,3 +160,8 @@ function copyIp() {
     toast.classList.add("translate-y-20", "opacity-0");
   }, 2000);
 }
+
+function toggleRules() {
+  const modal = document.getElementById("rules-modal");
+  modal.classList.toggle("hidden");
+}
