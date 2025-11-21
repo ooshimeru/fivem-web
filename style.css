@@ -1,5 +1,11 @@
 /* style.css */
 
+/* Cacher le curseur par défaut sur les écrans tactiles pour éviter les bugs */
+@media (pointer: fine) {
+    body {
+        cursor: none; /* Cache le curseur windows */
+    }
+}
 /* Scrollbar personnalisée pour Webkit */
 ::-webkit-scrollbar {
     width: 8px;
@@ -101,4 +107,21 @@
     animation: blob 10s infinite alternate;
     pointer-events: none; /* Click à travers */
     z-index: 0;
+}
+
+/* Effet de brillance qui passe sur le bouton */
+@keyframes shimmer {
+    0% {
+        transform: translateX(-150%) skewX(-15deg);
+    }
+    100% {
+        transform: translateX(150%) skewX(-15deg);
+    }
+}
+
+/* Ombre portée violette sous le texte sélectionné */
+::selection {
+    background: #a855f7;
+    color: white;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }

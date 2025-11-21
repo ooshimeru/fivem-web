@@ -35,7 +35,6 @@ const updateServerStats = async () => {
   const statusEl = document.getElementById("server-status");
   const playerEl = document.getElementById("player-count");
   const maxPlayerEl = document.getElementById("max-players");
-  const cfxIdEl = document.getElementById("cfx-id-display");
   const btnEl = document.getElementById("connect-btn");
 
   try {
@@ -62,9 +61,6 @@ const updateServerStats = async () => {
       playerEl.innerText = serverData.clients;
       maxPlayerEl.innerText = serverData.sv_maxclients;
 
-      // 3. Mise à jour de l'ID
-      cfxIdEl.innerText = SERVER_ID.toUpperCase();
-
       // 4. Activation du bouton de connexion
       btnEl.href = `fivem://connect/cfx.re/join/${SERVER_ID}`;
       btnEl.classList.remove("opacity-50", "pointer-events-none");
@@ -80,7 +76,6 @@ const updateServerStats = async () => {
         `;
     playerEl.innerText = "0";
     maxPlayerEl.innerText = "0";
-    cfxIdEl.innerText = SERVER_ID.toUpperCase();
   }
 };
 
@@ -113,3 +108,55 @@ const revealObserver = new IntersectionObserver(
 );
 
 revealElements.forEach((el) => revealObserver.observe(el));
+
+// Gestion du Preloader
+window.addEventListener("load", () => {
+  const preloader = document.getElementById("preloader");
+  preloader.style.opacity = "0";
+  setTimeout(() => {
+    preloader.style.display = "none";
+  }, 700); // Attend la fin de l'animation d'opacité
+});
+
+// CURSEUR PERSO
+const cursor = document.getElementById("cursor");
+const cursorDot = document.getElementById("cursor-dot");
+
+document.addEventListener("mousemove", (e) => {
+  // Le point suit instantanément
+  cursorDot.style.left = e.clientX + "px";
+  cursorDot.style.top = e.clientY + "px";
+
+  // Le cercle a un petit délai (effet smooth)
+  cursor.animate(
+    {
+      left: e.clientX + "px",
+      top: e.clientY + "px",
+    },
+    { duration: 500, fill: "forwards" },
+  );
+});
+
+// Agrandir le curseur sur les liens
+document.querySelectorAll("a, button").forEach((el) => {
+  el.addEventListener("mouseenter", () =>
+    cursor.classList.add("scale-150", "bg-brand-500/20"),
+  );
+  el.addEventListener("mouseleave", () =>
+    cursor.classList.remove("scale-150", "bg-brand-500/20"),
+  );
+});
+
+function copyIp() {
+  const ip = "connect.aurorarp.fr"; // Mettez votre vraie IP ou DNS
+  navigator.clipboard.writeText(ip);
+
+  // Afficher le toast
+  const toast = document.getElementById("toast");
+  toast.classList.remove("translate-y-20", "opacity-0");
+
+  // Cacher après 2 sec
+  setTimeout(() => {
+    toast.classList.add("translate-y-20", "opacity-0");
+  }, 2000);
+}

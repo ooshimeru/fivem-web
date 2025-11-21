@@ -154,7 +154,13 @@ const formatPrice = (price) => {
 // Générateur de carte HTML
 const createCard = (v) => {
   return `
-    <div class="group relative rounded-xl bg-gray-900 border border-gray-800 overflow-hidden hover:border-brand-500 hover:shadow-[0_0_30px_rgba(168,85,247,0.2)] transition-all duration-300">
+  <div class="group relative rounded-xl bg-gray-900 border border-gray-800 overflow-hidden hover:border-brand-500 hover:shadow-[0_0_30px_rgba(168,85,247,0.2)] transition-all duration-300"
+       data-tilt
+       data-tilt-max="15"
+       data-tilt-speed="400"
+       data-tilt-glare
+       data-tilt-max-glare="0.3"
+       data-tilt-scale="1.02">
 
         <!-- Image Container -->
         <div class="relative h-48 overflow-hidden">
@@ -209,7 +215,7 @@ const createCard = (v) => {
 
 // Fonction d'affichage
 window.filterVehicles = (category) => {
-  // Gestion des boutons actifs
+  // 1. Gestion des boutons actifs (Code existant)
   buttons.forEach((btn) => {
     btn.classList.remove(
       "active",
@@ -232,7 +238,7 @@ window.filterVehicles = (category) => {
     }
   });
 
-  // Filtrage des données
+  // 2. Filtrage des données (Code existant)
   grid.innerHTML = "";
   const filtered =
     category === "all"
@@ -244,11 +250,52 @@ window.filterVehicles = (category) => {
     return;
   }
 
-  // Injection HTML
+  // 3. Injection HTML (Code existant)
   filtered.forEach((v) => {
     grid.innerHTML += createCard(v);
   });
+
+  // --- NOUVEAU : Ré-initialiser VanillaTilt sur les nouvelles cartes ---
+  // On vérifie si VanillaTilt est chargé pour éviter les erreurs
+  if (typeof VanillaTilt !== "undefined") {
+    VanillaTilt.init(document.querySelectorAll("[data-tilt]"), {
+      max: 15,
+      speed: 400,
+      glare: true,
+      "max-glare": 0.3,
+      scale: 1.02,
+    });
+  }
 };
 
 // Init
 document.addEventListener("DOMContentLoaded", () => filterVehicles("all"));
+
+// CURSEUR PERSO
+const cursor = document.getElementById("cursor");
+const cursorDot = document.getElementById("cursor-dot");
+
+document.addEventListener("mousemove", (e) => {
+  // Le point suit instantanément
+  cursorDot.style.left = e.clientX + "px";
+  cursorDot.style.top = e.clientY + "px";
+
+  // Le cercle a un petit délai (effet smooth)
+  cursor.animate(
+    {
+      left: e.clientX + "px",
+      top: e.clientY + "px",
+    },
+    { duration: 500, fill: "forwards" },
+  );
+});
+
+// Agrandir le curseur sur les liens
+document.querySelectorAll("a, button").forEach((el) => {
+  el.addEventListener("mouseenter", () =>
+    cursor.classList.add("scale-150", "bg-brand-500/20"),
+  );
+  el.addEventListener("mouseleave", () =>
+    cursor.classList.remove("scale-150", "bg-brand-500/20"),
+  );
+});
